@@ -2,13 +2,20 @@ import pygame
 
 class Disk:
     def __init__(self, n, x_pos, y_pos):
-        self.value = n
-        self.rect= pygame.Rect(x_pos, y_pos, 25+(20*(self.value-1)), 20)
+        self.__value = n
+        self.rect= pygame.Rect(x_pos, y_pos, 25+(20*(self.__value-1)), 20)
 
     def move_disk(self, event_pos):
         self.rect.x = event_pos[0] - self.rect.w/2
         self.rect.y = event_pos[1] - self.rect.h/2
+    
+    @property
+    def get_value(self):
+        return self.__value
 
+    @get_value.setter
+    def set_value(self, new_value):
+        self.__value = new_value
 class Tower:
     def __init__(self):
         self.N=8
@@ -55,7 +62,7 @@ class Tower:
     def append_disk(self, tower, disk, limit, screen=0, algorithm=False):
         tower.append(disk)
         index = tower.index(disk)
-        disk.rect.x = limit-(10*disk.value)+5
+        disk.rect.x = limit-(10*disk.get_value)+5
         disk.rect.y = 360 - 20*index 
         if algorithm:
             self.draw_tower(screen)
@@ -79,11 +86,11 @@ class Tower:
     def __repr__(self):
         print('\nA', end='->')
         for disk in self.A[0]:
-            print(disk.value, end=' ')
+            print(disk.get_value, end=' ')
         print('\nB', end='->')
         for disk in self.B[0]:
-            print(disk.value, end=' ')
+            print(disk.get_value, end=' ')
         print('\nC', end='->')
         for disk in self.C[0]:
-            print(disk.value, end=' ')
+            print(disk.get_value, end=' ')
         print('\n')
