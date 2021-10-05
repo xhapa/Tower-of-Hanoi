@@ -14,8 +14,8 @@ class Disk:
         return self.__value
 
     @get_value.setter
-    def set_value(self, new_value):
-        self.__value = new_value
+    def set_value(self, value):
+        self.__value = value
 class Tower:
     def __init__(self):
         self.N=8
