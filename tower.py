@@ -20,28 +20,52 @@ class Tower:
     def __init__(self):
         self.N=8
         self.colors = ['#2D4739', '#09814A', '#9FD356', '#F4E04D', '#F6AE2D', '#FE5F55', '#E63462', '#726DA8']
-        self.A=([], pygame.Rect(160, 180, 10, 200))
-        self.B=([], pygame.Rect(400, 180, 10, 200))
-        self.C=([], pygame.Rect(640, 180, 10, 200))
+        self.__A=([], pygame.Rect(160, 180, 10, 200))
+        self.__B=([], pygame.Rect(400, 180, 10, 200))
+        self.__C=([], pygame.Rect(640, 180, 10, 200))
     
         for i in range(self.N, 0,-1):
-            self.A[0].append(Disk(i, 160-(10*i), 200+(20*i)))
+            self.__A[0].append(Disk(i, 160-(10*i), 200+(20*i)))
+
+    @property
+    def get_A(self):
+        return self.__A
+
+    @get_A.setter
+    def set_A(self, new_A):
+        self.__A =  new_A
+
+    @property
+    def get_B(self):
+        return self.__B
+
+    @get_B.setter
+    def set_B(self, new_B):
+        self.__B = new_B
+
+    @property
+    def get_C(self):
+        return self.__C
+
+    @get_C.setter
+    def set_C(self, new_C):
+        self.__C = new_C
 
     def draw_tower(self, screen):
         pygame.draw.rect(screen, ('#5A350E'), pygame.Rect(50, 380, 700, 20))
-        pygame.draw.rect(screen, ('#5A350E'), self.A[1])
-        pygame.draw.rect(screen, ('#5A350E'), self.B[1])
-        pygame.draw.rect(screen, ('#5A350E'), self.C[1])
+        pygame.draw.rect(screen, ('#5A350E'), self.get_A[1])
+        pygame.draw.rect(screen, ('#5A350E'), self.get_B[1])
+        pygame.draw.rect(screen, ('#5A350E'), self.get_C[1])
         self.draw_disks(screen)
         pygame.display.update()
 
     def draw_disks(self, screen):
-        for i in range(len(self.A[0])):
-            pygame.draw.rect(screen, (self.colors[i]), self.A[0][i].rect)
-        for i in range(len(self.B[0])):
-            pygame.draw.rect(screen, (self.colors[i]), self.B[0][i].rect)
-        for i in range(len(self.C[0])):
-            pygame.draw.rect(screen, (self.colors[i]), self.C[0][i].rect)
+        for i in range(len(self.get_A[0])):
+            pygame.draw.rect(screen, (self.colors[i]), self.get_A[0][i].rect)
+        for i in range(len(self.get_B[0])):
+            pygame.draw.rect(screen, (self.colors[i]), self.get_B[0][i].rect)
+        for i in range(len(self.get_C[0])):
+            pygame.draw.rect(screen, (self.colors[i]), self.get_C[0][i].rect)
 
     def move_disks(self, event, event_pos, origin, destiny1, destiny2):
         for disk in origin[0]:
@@ -55,9 +79,9 @@ class Tower:
                 self.append_disk(destiny2[0], disk, destiny2[1].x)
 
     def select_disks(self, event, event_pos):
-        self.move_disks(event, event_pos, self.A, self.B, self.C)
-        self.move_disks(event, event_pos, self.B, self.A, self.C)
-        self.move_disks(event, event_pos, self.C, self.A, self.B)
+        self.move_disks(event, event_pos, self.get_A, self.get_B, self.get_C)
+        self.move_disks(event, event_pos, self.get_B, self.get_A, self.get_C)
+        self.move_disks(event, event_pos, self.get_C, self.get_A, self.get_B)
 
     def append_disk(self, tower, disk, limit, screen=0, algorithm=False):
         tower.append(disk)
@@ -76,21 +100,21 @@ class Tower:
             self.solve(n-1, aux, destiny, origin, screen)
     
     def reset(self):
-        self.A[0].clear()
-        self.B[0].clear()
-        self.C[0].clear()
+        self.get_A[0].clear()
+        self.get_B[0].clear()
+        self.get_C[0].clear()
 
         for i in range(self.N, 0,-1):
-            self.A[0].append(Disk(i, 160-(10*i), 200+(20*i)))
+            self.get_A[0].append(Disk(i, 160-(10*i), 200+(20*i)))
 
     def __repr__(self):
         print('\nA', end='->')
-        for disk in self.A[0]:
+        for disk in self.get_A[0]:
             print(disk.get_value, end=' ')
         print('\nB', end='->')
-        for disk in self.B[0]:
+        for disk in self.get_B[0]:
             print(disk.get_value, end=' ')
         print('\nC', end='->')
-        for disk in self.C[0]:
+        for disk in self.get_C[0]:
             print(disk.get_value, end=' ')
         print('\n')

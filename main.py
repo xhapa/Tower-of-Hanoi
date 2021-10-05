@@ -37,12 +37,12 @@ def main():
                 tower.select_disks(event, mouse_pos)
 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                if tower.A[0]==[] and tower.C[0]==[]:
-                    tower.solve(8, tower.B, tower.A, tower.C, SCREEN)
-                elif tower.A[0]==[] and tower.B[0]==[]:
-                    tower.solve(8, tower.C, tower.B, tower.A, SCREEN)
-                elif tower.C[0]==[] and tower.B[0]==[]:
-                    tower.solve(8, tower.A, tower.C, tower.B, SCREEN)
+                if tower.get_A[0]==[] and tower.get_C[0]==[]:
+                    tower.solve(8, tower.get_B, tower.get_A, tower.get_C, SCREEN)
+                elif tower.get_A[0]==[] and tower.get_B[0]==[]:
+                    tower.solve(8, tower.get_C, tower.get_B, tower.get_A, SCREEN)
+                elif tower.get_C[0]==[] and tower.get_B[0]==[]:
+                    tower.solve(8, tower.get_A, tower.get_C, tower.get_B, SCREEN)
             if event.type == pygame.MOUSEBUTTONDOWN and reset_button.collidepoint(mouse_pos):
                 tower.reset()
 
