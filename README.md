@@ -2,6 +2,10 @@
 ## About the game
 It's project is a game about tower of hanoi interface to solve it and play it, The Tower of Hanoi (also called The problem of Benares Temple or Tower of Brahma or Lucas' Tower and sometimes pluralized as Towers, or simply pyramid puzzle) is a mathematical game or puzzle consisting of three rods and a number of disks of various diameters, which can slide onto any rod. [Tower-of-Hanoi](https://en.wikipedia.org/wiki/Tower_of_Hanoi)
 
+<p align="center">
+  <img  src="https://i.imgur.com/fjtfU83.png" width="350" height="245" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img  src="https://i.imgur.com/1S2Psda.png" width="350" height="245" />
+</p>
+
 ## How does it work?
 ### Main script
 The ```main()``` function is called to start the game. In this function, ```pygame.init()``` is called to initialize all imported pygame modules. 
